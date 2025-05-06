@@ -4,15 +4,30 @@ set -e
 echo "🏗️ [TSD CNB] Build phase started"
 echo "📦 Installing dependencies and configuring Node.js manually (placeholder)"
 
-# Просто копіює все в /layers/tsd-layer і встановлює запуск
-APP_DIR=${1}
-LAYERS_DIR=${2}
-ENV_DIR=${3}
+# Параметри
+LAYERS_DIR=$1
+PLATFORM_DIR=$2
+PLAN_PATH=$3
 
-mkdir -p "${LAYERS_DIR}/tsd-layer"
-cp -r "${APP_DIR}"/* "${LAYERS_DIR}/tsd-layer/"
+# Шлях до шару
+APP_LAYER_DIR="${LAYERS_DIR}/tsd-layer"
 
-cat > "${LAYERS_DIR}/tsd-layer/launch.toml" <<EOF
+# 1. Створення шару
+mkdir -p "${APP_LAYER_DIR}"
+
+# 2. Копіюємо код додатку
+cp -r ./* "${APP_LAYER_DIR}/"
+
+# 3. Створюємо мета-файл шару
+cat > "${LAYERS_DIR}/tsd-layer.toml" <<EOF
+[types]
+  launch = true
+  build = true
+  cache = false
+EOF
+
+# 4. Створюємо launch.toml
+cat > "${LAYERS_DIR}/launch.toml" <<EOF
 [[processes]]
 type = "web"
 command = "node"

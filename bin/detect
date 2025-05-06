@@ -5,7 +5,7 @@ set -e
 echo "🔍 [TSD CNB] Detect phase started"
 
 # Просте правило: якщо є файл з іменем TSD_BUILD_ME — спрацьовуємо
-if [[ -f "${1}/TSD_BUILD_ME" ]]; then
+if [[ -f "TSD_BUILD_ME" ]]; then
   echo "tsd/nodejs-cnb"  # ID білдпаку з buildpack.toml
   exit 0
 else
