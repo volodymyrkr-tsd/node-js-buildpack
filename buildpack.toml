@@ -1,0 +1,9 @@
+api = "0.8"
+
+[buildpack]
+id = "examples/node-js"
+version = "0.0.1"
+name = "Node.js Example Buildpack"
+
+[[stacks]]
+id = "io.buildpacks.stacks.bionic"

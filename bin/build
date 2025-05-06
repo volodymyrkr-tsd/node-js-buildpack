@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+set -e
+
+layers_dir=$1
+platform_dir=$2
+plan_path=$3
+
+echo "Installing dependencies..."
+cd "$layers_dir"
+mkdir -p node-js
+cd "$layers_dir/.."
+
+cd "$layers_dir/../../"
+npm install
+
+mkdir -p "$layers_dir/launch"
+cat > "$layers_dir/launch.toml" <<EOF
+[[processes]]
+type = "web"
+command = "npm start"
+default = true
+EOF
