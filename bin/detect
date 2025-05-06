@@ -1,9 +1,15 @@
 #!/usr/bin/env bash
 set -e
 
-if [ -f "${1}/package.json" ]; then
-  echo "Node.js app detected"
+# Виведе чітке повідомлення в логи білду
+echo "🔍 [TSD CNB] Detect phase started"
+
+# Просте правило: якщо є файл з іменем TSD_BUILD_ME — спрацьовуємо
+if [[ -f "${1}/TSD_BUILD_ME" ]]; then
+  echo "tsd/nodejs-cnb"  # ID білдпаку з buildpack.toml
   exit 0
+else
+  echo "🔍 [TSD CNB] TSD_BUILD_ME not found"
+  exit 100
 fi
 
-exit 1

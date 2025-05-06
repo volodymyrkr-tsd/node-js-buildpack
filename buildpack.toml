@@ -1,9 +1,9 @@
-api = "0.8"
+api = "0.7"
 
 [buildpack]
-id = "examples/node-js"
+id = "tsd/nodejs-cnb"
 version = "0.0.1"
-name = "Node.js Example Buildpack"
+name = "TSD Test Node.js Buildpack"
 
 [[stacks]]
-id = "io.buildpacks.stacks.bionic"
+id = "heroku-24"

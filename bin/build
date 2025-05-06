@@ -1,22 +1,23 @@
 #!/usr/bin/env bash
 set -e
 
-layers_dir=$1
-platform_dir=$2
-plan_path=$3
+echo "🏗️ [TSD CNB] Build phase started"
+echo "📦 Installing dependencies and configuring Node.js manually (placeholder)"
 
-echo "Installing dependencies..."
-cd "$layers_dir"
-mkdir -p node-js
-cd "$layers_dir/.."
+# Просто копіює все в /layers/tsd-layer і встановлює запуск
+APP_DIR=${1}
+LAYERS_DIR=${2}
+ENV_DIR=${3}
 
-cd "$layers_dir/../../"
-npm install
+mkdir -p "${LAYERS_DIR}/tsd-layer"
+cp -r "${APP_DIR}"/* "${LAYERS_DIR}/tsd-layer/"
 
-mkdir -p "$layers_dir/launch"
-cat > "$layers_dir/launch.toml" <<EOF
+cat > "${LAYERS_DIR}/tsd-layer/launch.toml" <<EOF
 [[processes]]
 type = "web"
-command = "npm start"
+command = "node"
+args = ["app.js"]
 default = true
 EOF
+
+echo "✅ [TSD CNB] Build phase finished"
