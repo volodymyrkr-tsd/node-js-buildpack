@@ -5,9 +5,9 @@ echo "🏗️ [TSD CNB] Build phase started"
 echo "📦 Installing dependencies and configuring Node.js manually (placeholder)"
 
 # Параметри
-LAYERS_DIR=$1
-PLATFORM_DIR=$2
-PLAN_PATH=$3
+LAYERS_DIR="test_layer"
+PLATFORM_DIR="test_platform"
+PLAN_PATH="test_plan"
 
 # Шлях до шару
 APP_LAYER_DIR="${LAYERS_DIR}/tsd-layer"
